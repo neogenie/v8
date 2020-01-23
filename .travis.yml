@@ -18,6 +18,6 @@ script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t neogenie/v8:$TAG --build-arg UBUNTU_VERSION=$UBUNTU_VERSION .
   - docker push neogenie/v8:$TAG
-  - if [[ "TAG" == "ubuntu18" ]]; then
+  - if [[ "$TAG" == "ubuntu18" ]]; then
       docker push neogenie/v8:latest;
     fi
