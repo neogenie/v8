@@ -19,5 +19,5 @@ script:
   - docker build -t neogenie/v8:$TAG --build-arg UBUNTU_VERSION=$UBUNTU_VERSION .
   - docker push neogenie/v8:$TAG
   - if [[ "TAG" == "ubuntu18" ]]; then
-      docker push neogenie/v8:latest
+      docker push neogenie/v8:latest;
     fi
