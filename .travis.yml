@@ -5,7 +5,19 @@ language: shell
 services:
   - docker
 
+jobs:
+  include:
+    - env:
+      - UBUNTU_VERSION=16.04
+      - TAG=ubuntu16
+    - env:
+      - UBUNTU_VERSION=18.04
+      - TAG=ubuntu18
+
 script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t neogenie/v8 .
-  - docker push neogenie/v8
+  - docker build -t neogenie/v8:$TAG --build-arg UBUNTU_VERSION=$UBUNTU_VERSION .
+  - docker push neogenie/v8:$TAG
+  - if [[ "TAG" == "ubuntu18" ]]; then
+      docker push neogenie/v8:latest
+    fi
