@@ -1,0 +1,11 @@
+os: linux
+dist: xenial
+language: shell
+
+services:
+  - docker
+
+script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t neogenie/v8 .
+  - docker push neogenie/v8
