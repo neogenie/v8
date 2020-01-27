@@ -33,11 +33,9 @@ RUN cd ${BUILD_DIR} && \
     fetch v8 && \
     cd v8 && \
     tools/dev/v8gen.py -vv x64.release.sample && \
-    ninja -C out.gn/x64.release.sample v8_monolith && \
-    cp out.gn/x64.release.sample/obj/*.a /usr/lib/ && \
-    cp -r include/* /usr/include/
+    ninja -C out.gn/x64.release.sample v8_monolith
 
 FROM ubuntu:$UBUNTU_VERSION as library
 ENV BUILD_DIR /tmp/build
 COPY --from=builder ${BUILD_DIR}/v8/out.gn/x64.release.sample/obj/*.a /usr/lib/
-COPY --from=builder ${BUILD_DIR}/v8/include/* /usr/include/
+COPY --from=builder ${BUILD_DIR}/v8/include /usr/include

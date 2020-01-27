@@ -14,8 +14,8 @@ docker pull neogenie/v8
 V8 Libs will be available:
 
 ```
-/usr/include/libplatform-export.h
-/usr/include/libplatform.h
+/usr/include/libplatform/libplatform-export.h
+/usr/include/libplatform/libplatform.h
 /usr/include/v8-inspector-protocol.h
 /usr/include/v8-inspector.h
 /usr/include/v8-internal.h
